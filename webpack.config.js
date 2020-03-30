@@ -8,8 +8,8 @@ module.exports=()=>{
         entry:'./src/index.js',
         output:{
             path:path.resolve(__dirname,'dist'),
-            filename:'bundel.js',
-            library:"CommonComp",
+            filename:'MenuComp.js',
+            library:"MenuComp",
             libraryTarget:'umd'
         },
         module:{
