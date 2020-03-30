@@ -15,7 +15,7 @@ module.exports=()=>{
         module:{
             rules:[
                 {test:/\.m?js$/,loader:'babel-loader'},
-                {test:/\.(css|less|scss)$/,loader:[miniCssExtractPlugin.loader,'css-loader']},
+                {test:/\.(css|less|scss)$/,loader:[miniCssExtractPlugin.loader,'css-loader','sass-loader']},
                 {test:/\.(svg|png|jpe?g)$/,loader:'url-loader'}
             ]
         },
@@ -23,6 +23,6 @@ module.exports=()=>{
           historyApiFallback:true,
           port:9095
       },
-      plugins:[new htmlWebpackPlugin({template:'./public/index.html'}), new miniCssExtractPlugin()]  
+      plugins:[new miniCssExtractPlugin()]  
     })
 }
