@@ -1,28 +1,30 @@
-const path= require("path");
-const webpackMerge = require('webpack-merge');
-const htmlWebpackPlugin = require('html-webpack-plugin');
-const miniCssExtractPlugin = require('mini-css-extract-plugin');
-
-module.exports=()=>{
-    return webpackMerge({
-        entry:'./src/index.js',
-        output:{
-            path:path.resolve(__dirname,'dist'),
-            filename:'MenuComp.js',
-            library:"MenuComp",
-            libraryTarget:'umd'
-        },
-        module:{
-            rules:[
-                {test:/\.m?js$/,loader:'babel-loader'},
-                {test:/\.(css|less|scss)$/,loader:[miniCssExtractPlugin.loader,'css-loader','sass-loader']},
-                {test:/\.(svg|png|jpe?g)$/,loader:'url-loader'}
-            ]
-        },
-      devServer:{
-          historyApiFallback:true,
-          port:9095
+var path = require('path');
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'index.js',
+    library: 'MenuComp',
+    libraryTarget: 'umd' // THIS IS THE MOST IMPORTANT LINE! :mindblow: I wasted more than 2 days until realize this was the line most important in all this guide.
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: path.resolve(__dirname, 'src'),
+        exclude: /(node_modules|bower_components|build)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/env']
+          }
+        }
       },
-      plugins:[new miniCssExtractPlugin()]  
-    })
-}
+      {
+        test: /\.(css|scss)$/,
+        use: [ 'style-loader', 'css-loader','sass-loader' ]
+      }
+
+    ]
+  }
+};
