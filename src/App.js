@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import MainMenu from './Component/menu';
 
-function App(props) {
+function CommonMenu(props) {
   const [data,updatedData] =useState({})
   const  configureData =(value)=>{
     return value.reduce(function(acc,key,i){
@@ -20,4 +20,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default CommonMenu;
